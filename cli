@@ -10,16 +10,14 @@ end
 require_relative './lib/parser'
 require_relative './lib/reader'
 
-# puts "** #{ARGF}"
-# ARGV[1].each_line do |e|
-#   puts e
-# end
-
 TYPE = ['-r', '-p']
-ERR_MSG = "Error:: Unknow parameters. Please follow this"
+ERR_MSG = "Error:: Unknow parameters. Please follow this:
+  - ./cli -r clients.csv #for reading CSV
+  - ./cli -p clients.csv output.csv #for parsing and validating CSV
+"
 
 if ARGV.size > 3 && ARGV.size < 2
-  p ERR_MSG
+  puts ERR_MSG
 else
   if TYPE.include?(ARGV[0])
     case ARGV.size
@@ -29,6 +27,6 @@ else
         then Parser::start(ARGV[1], ARGV[2])
     end
   else
-    p ERR_MSG 
+    puts ERR_MSG 
   end
 end
